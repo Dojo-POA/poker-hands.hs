@@ -44,9 +44,15 @@ spec = do
         let h2 = [(Ten, 'H')]
         compareHands h1 h2 `shouldBe` leftHand
 
+  describe "Two hands in diferent orders" $ do
     it "10 should win 9" $ do
-        let h1 = [(Ten, 'H')]
-        let h2 = [(Nine, 'H')]
+        let h1 = [(Ten, 'H'),(Nine, 'C')]
+        let h2 = [(Nine, 'H'), (Eight, 'C')]
+        compareHands h1 h2 `shouldBe` leftHand
+
+    it "10 should win 9 diferent order" $ do
+        let h1 = [(Nine, 'C'), (Ten, 'H')]
+        let h2 = [(Nine, 'H'), (Eight, 'C')]
         compareHands h1 h2 `shouldBe` leftHand
 
 
