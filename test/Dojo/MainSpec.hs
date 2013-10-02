@@ -6,49 +6,47 @@ import Control.Exception (evaluate)
 import Dojo.Main
 
 
-
-
 spec :: Spec
 spec = do
   describe "High card" $ do
     it "draw when highest cards are equal" $ do
-      let hand1 = [('4', 'H')]
-      let hand2 = [('4', 'H')]
+      let hand1 = [(Four, 'H')]
+      let hand2 = [(Four, 'H')]
       compareHands hand1 hand2 `shouldBe` draw
 
     it "right highest card wins" $ do
-        let h1 = [('5', 'H')]
-        let h2 = [('6', 'H')]
+        let h1 = [(Five, 'H')]
+        let h2 = [(Six, 'H')]
         compareHands h1 h2 `shouldBe` rightHand
 
     it "left highest card wins" $ do
-        let h1 = [('3', 'H')]
-        let h2 = [('2', 'H')]
+        let h1 = [(Three, 'H')]
+        let h2 = [(Two, 'H')]
         compareHands h1 h2 `shouldBe` leftHand  
 
     it "A should win K" $ do
-        let h1 = [('A', 'H')]
-        let h2 = [('K', 'H')]
+        let h1 = [(Ace, 'H')]
+        let h2 = [(King, 'H')]
         compareHands h1 h2 `shouldBe` leftHand
 
     it "K should win Q" $ do
-        let h1 = [('K', 'H')]
-        let h2 = [('Q', 'H')]
+        let h1 = [(King, 'H')]
+        let h2 = [(Queen, 'H')]
         compareHands h1 h2 `shouldBe` leftHand
 
     it "Q should win J" $ do
-        let h1 = [('Q', 'H')]
-        let h2 = [('J', 'H')]
+        let h1 = [(Queen, 'H')]
+        let h2 = [(Jack, 'H')]
         compareHands h1 h2 `shouldBe` leftHand
 
     it "J should win 10" $ do
-        let h1 = [('J', 'H')]
-        let h2 = [('T', 'H')]
+        let h1 = [(Jack, 'H')]
+        let h2 = [(Ten, 'H')]
         compareHands h1 h2 `shouldBe` leftHand
 
     it "10 should win 9" $ do
-        let h1 = [('T', 'H')]
-        let h2 = [('9', 'H')]
+        let h1 = [(Ten, 'H')]
+        let h2 = [(Nine, 'H')]
         compareHands h1 h2 `shouldBe` leftHand
 
 
