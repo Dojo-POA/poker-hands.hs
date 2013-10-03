@@ -66,12 +66,13 @@ spec = do
         let h2 = [(Seven, Hearts), (Seven, Spades)]
         compareHands h1 h2 `shouldBe` rightHand
 
-    it "two aces wins against one ace" $ do
-        let h1 = [(Ace, Hearts), (Ace, Clubs)]
-        let h2 = [(Ace, Diamonds), (Seven, Spades)]
+    it "two twos wins against one ace" $ do
+        let h1 = [(Six, Hearts), (Two, Clubs), (Two, Hearts), (Three, Hearts), (Four, Diamonds)]
+        let h2 = [(Ace, Diamonds), (Jack, Spades), (King, Spades), (Ten, Spades), (Nine, Spades)]
         compareHands h1 h2 `shouldBe` leftHand
 
-    it "kings!" $ do
-        let h1 = [(Ace, Hearts), (Two, Clubs), (Two, Diamonds)]
-        let h2 = [(King, Diamonds), (King, Spades), (Two, Clubs)]
+  describe "Three of a kind beats high card" $ do
+    it "three fours wins against high card" $ do
+        let h1 = [(Ace, Hearts), (King, Spades), (Two, Diamonds)]
+        let h2 = [(Four, Hearts), (Four, Clubs), (Four, Spades)]
         compareHands h1 h2 `shouldBe` rightHand
