@@ -50,11 +50,28 @@ spec = do
         let h2 = [(Nine, Hearts), (Eight, Clubs)]
         compareHands h1 h2 `shouldBe` leftHand
 
-    it "10 should win 9 diferent order" $ do
+    it "10 should win 9 different order" $ do
         let h1 = [(Nine, Clubs), (Ten, Hearts)]
         let h2 = [(Nine, Hearts), (Eight, Clubs)]
         compareHands h1 h2 `shouldBe` leftHand
 
+  describe "Pair beats high card" $ do
+    it "two kings wins against one ace when left hand" $ do
+        let h1 = [(King, Hearts), (King, Spades)]
+        let h2 = [(Ace, Hearts), (Two, Clubs)]
+        compareHands h1 h2 `shouldBe` leftHand
 
+    it "two sevens wins against one ace when right hand" $ do
+        let h1 = [(Ace, Hearts), (Two, Clubs)]
+        let h2 = [(Seven, Hearts), (Seven, Spades)]
+        compareHands h1 h2 `shouldBe` rightHand
 
+    it "two aces wins against one ace" $ do
+        let h1 = [(Ace, Hearts), (Ace, Clubs)]
+        let h2 = [(Ace, Diamonds), (Seven, Spades)]
+        compareHands h1 h2 `shouldBe` leftHand
 
+    it "kings!" $ do
+        let h1 = [(Ace, Hearts), (Two, Clubs), (Two, Diamonds)]
+        let h2 = [(King, Diamonds), (King, Spades), (Two, Clubs)]
+        compareHands h1 h2 `shouldBe` rightHand
