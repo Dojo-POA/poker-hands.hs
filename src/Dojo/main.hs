@@ -1,6 +1,6 @@
 module Dojo.Main where
 import Data.Char(digitToInt)
-import Data.List(sort)
+import Data.List(sort, sortBy)
 
 data Face =   Two 
 			| Three 
@@ -17,7 +17,10 @@ data Face =   Two
 			| Ace 
 	deriving (Show, Eq, Ord, Enum)
 
-type Card = (Face, Char)
+data Suit = Clubs | Hearts | Diamonds | Spades
+	deriving (Show, Eq)
+
+type Card = (Face, Suit)
 type Hand = [Card]
 
 leftHand = GT
@@ -26,4 +29,6 @@ draw = EQ
 
 compareHands :: Hand -> Hand -> Ordering
 compareHands hand1 hand2 =
-	compare (sort hand1) (sort hand2)
+	compare (faces hand1) (faces hand2)
+	where faces = sort . map fst
+
