@@ -30,11 +30,11 @@ type Card = (Face, Suit)
 type Hand = [Card]
 
 rank :: Hand -> Rank
-rank hand =
-  if (numberOfSuits hand) == 1 then Flush
-  else if (numberOfFaces hand) == 4 then OnePair
-  else if (numberOfFaces hand) == 2 then FourOfAKind
-  else HighCard
+rank hand
+  | (numberOfSuits hand) == 1 = Flush
+  | (numberOfFaces hand) == 4 = OnePair
+  | (numberOfFaces hand) == 2 = FourOfAKind
+  | otherwise = HighCard
   where 
     numberOfSuits = length . uniqueSuits
     numberOfFaces = length . uniqueFaces
