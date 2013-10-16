@@ -21,4 +21,11 @@ spec = do
             (Five, Hearts), 
             (Six, Hearts), 
             (Ten, Hearts)] /= Flush
+  describe "One Pair" $ do
+    it "is a pair when two and only two cards have the same face" $ do
+      rank [(Two, Clubs), 
+            (Two, Hearts), 
+            (Five, Hearts), 
+            (Six, Hearts), 
+            (Ten, Hearts)] `shouldBe` OnePair
 
