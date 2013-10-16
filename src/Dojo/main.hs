@@ -22,22 +22,23 @@ data Suit = Clubs | Hearts | Diamonds | Spades
 
 data Rank = HighCard
           | Flush
-          | OnePair 
+          | OnePair
+          | FourOfAKind 
   deriving (Show, Eq, Ord)
 
 type Card = (Face, Suit)
 type Hand = [Card]
 
 rank :: Hand -> Rank
-rank hand = if (numberOfSuits hand) == 1
- then Flush
- else if (numberOfFaces hand) == 4
-  then OnePair
- else HighCard
- where 
-  numberOfSuits = length . uniqueSuits
-  numberOfFaces = length . uniqueFaces
-  uniqueSuits = nub . allSuits
-  uniqueFaces = nub . allFaces
-  allSuits = map snd
-  allFaces = map fst
+rank hand =
+  if (numberOfSuits hand) == 1 then Flush
+  else if (numberOfFaces hand) == 4 then OnePair
+  else if (numberOfFaces hand) == 2 then FourOfAKind
+  else HighCard
+  where 
+    numberOfSuits = length . uniqueSuits
+    numberOfFaces = length . uniqueFaces
+    uniqueSuits = nub . allSuits
+    uniqueFaces = nub . allFaces
+    allSuits = map snd
+    allFaces = map fst

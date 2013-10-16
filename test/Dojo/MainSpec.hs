@@ -29,3 +29,10 @@ spec = do
             (Six, Hearts), 
             (Ten, Hearts)] `shouldBe` OnePair
 
+  describe "Four of a Kind" $ do
+    it "is a four of a kind when four cards have the same face" $ do
+      rank [(Two, Clubs), 
+            (Two, Hearts), 
+            (Two, Diamonds), 
+            (Two, Spades), 
+            (Ten, Hearts)] `shouldBe` FourOfAKind
