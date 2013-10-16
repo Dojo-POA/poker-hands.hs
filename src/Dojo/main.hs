@@ -1,6 +1,6 @@
 module Dojo.Main where
-import Data.Set (Set)
-import qualified Data.Set as Set
+--import Data.Set
+import Data.List 
 
 data Face = Two 
           | Three 
@@ -27,12 +27,11 @@ data Rank = HighCard
 type Card = (Face, Suit)
 type Hand = [Card]
 
-extractSuit :: Card -> Suit
-extractSuit (_, suit) = suit
-
-extractSuits :: Hand -> [Suit]
-extractSuits hand = map extractSuit hand
-
 rank :: Hand -> Rank
-
-rank hand = if Set.size(Set.fromList(extractSuits(hand))) == 1 then Flush else HighCard
+rank hand = if (numberOfSuits hand) == 1
+ then Flush
+ else HighCard
+ where 
+  numberOfSuits = length . uniqueSuits
+  uniqueSuits = nub . allSuits
+  allSuits = map snd
