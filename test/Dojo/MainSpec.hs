@@ -8,7 +8,7 @@ import Dojo.Main
 
 spec :: Spec
 spec = do
-  describe "Sample" $ do
-    it "sample test" $ do
-      True `shouldBe` True
+  describe "Flush" $ do
+    it "is flush when all suits are the same" $ do
+      rank [(Two, Hearts), (Four, Hearts), (Five, Hearts), (Six, Hearts), (Ten, Hearts)] `shouldBe` Flush
 
