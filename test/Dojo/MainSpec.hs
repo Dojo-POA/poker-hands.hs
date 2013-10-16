@@ -10,5 +10,15 @@ spec :: Spec
 spec = do
   describe "Flush" $ do
     it "is flush when all suits are the same" $ do
-      rank [(Two, Hearts), (Four, Hearts), (Five, Hearts), (Six, Hearts), (Ten, Hearts)] `shouldBe` Flush
+      rank [(Two, Hearts), 
+            (Four, Hearts), 
+            (Five, Hearts), 
+            (Six, Hearts), 
+            (Ten, Hearts)] `shouldBe` Flush
+    it "is NOT flush when one suit is NOT the same" $ do
+      rank [(Two, Clubs), 
+            (Four, Hearts), 
+            (Five, Hearts), 
+            (Six, Hearts), 
+            (Ten, Hearts)] /= Flush
 
