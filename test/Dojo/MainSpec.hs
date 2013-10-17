@@ -37,6 +37,23 @@ spec = do
             (Ace, Spades), 
             (Ace, Hearts)] `shouldBe` FullHouse
 
+  describe "Two Pairs" $ do
+    it "is a two pairs when there is two pairs of a same face" $ do
+      rank [(Two, Clubs), 
+            (Two, Hearts), 
+            (Three, Diamonds), 
+            (Ace, Spades), 
+            (Ace, Hearts)] `shouldBe` TwoPairs
+
+
+  describe "Three of a kind" $ do
+    it "is a three of a kind when there is three of a kind of a same face" $ do
+      rank [(Two, Clubs), 
+            (Two, Hearts), 
+            (Two, Diamonds), 
+            (Three, Spades), 
+            (Ace, Hearts)] `shouldBe` ThreeOfAKind
+
   describe "Four of a Kind" $ do
     it "is a four of a kind when four cards have the same face" $ do
       rank [(Two, Clubs), 

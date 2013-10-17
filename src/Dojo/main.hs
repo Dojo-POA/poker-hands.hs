@@ -22,6 +22,8 @@ data Suit = Clubs | Hearts | Diamonds | Spades
 
 data Rank = HighCard
           | OnePair
+          | TwoPairs
+          | ThreeOfAKind
           | Flush
           | FullHouse
           | FourOfAKind 
@@ -34,6 +36,7 @@ rankFor [5] _ = Flush
 rankFor _ [2, 3] = FullHouse
 rankFor _ [1, 4] = FourOfAKind
 rankFor _ [1, 1, 1, 2] = OnePair
+rankFor _ [1, 2, 2] = TwoPairs
 rankFor _ _ = HighCard
 
 rank :: Hand -> Rank
