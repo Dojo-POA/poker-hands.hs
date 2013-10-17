@@ -1,5 +1,4 @@
 module Dojo.Main where
---import Data.Set
 import Data.List 
 
 data Face = Two 
@@ -29,11 +28,13 @@ data Rank = HighCard
           | FullHouse
           | FourOfAKind
           | StraightFlush 
+          | RoyalStraightFlush
   deriving (Show, Eq, Ord)
 
 type Card = (Face, Suit)
 type Hand = [Card]
 
+rankFor :: [Int] -> [Int] -> Bool -> Rank
 rankFor [5] _ True = StraightFlush
 rankFor [5] _ _ = Flush
 rankFor _ [2, 3] _ = FullHouse
@@ -54,4 +55,5 @@ sequencial hand = sequencialSorted (sortedFaces hand)
 rank :: Hand -> Rank
 rank hand = rankFor (ranker snd hand) (ranker fst hand) (sequencial hand)
   where
+    ranker :: Eq a => (Card -> a) -> Hand -> [Int]
     ranker op = sort . map length . group . map op

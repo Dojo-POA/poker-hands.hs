@@ -90,3 +90,11 @@ spec = do
             (Four, Hearts), 
             (Five, Hearts), 
             (Six, Hearts)] `shouldBe` StraightFlush
+
+  describe "Royal Straight Flush" $ do
+    it "is a four of a kind when four cards have the same face" $ do
+      rank [(Ace, Hearts), 
+            (King, Hearts), 
+            (Queen, Hearts), 
+            (Jack, Hearts), 
+            (Ten, Hearts)] `shouldBe` RoyalStraightFlush
