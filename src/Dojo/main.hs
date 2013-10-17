@@ -27,12 +27,14 @@ data Rank = HighCard
           | Straight
           | Flush
           | FullHouse
-          | FourOfAKind 
+          | FourOfAKind
+          | StraightFlush 
   deriving (Show, Eq, Ord)
 
 type Card = (Face, Suit)
 type Hand = [Card]
 
+rankFor [5] _ True = StraightFlush
 rankFor [5] _ _ = Flush
 rankFor _ [2, 3] _ = FullHouse
 rankFor _ [1, 4] _ = FourOfAKind

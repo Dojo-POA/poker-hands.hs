@@ -76,3 +76,11 @@ spec = do
             (Two, Diamonds), 
             (Two, Spades), 
             (Ten, Hearts)] `shouldBe` FourOfAKind
+
+  describe "Straight Flush" $ do
+    it "is a four of a kind when four cards have the same face" $ do
+      rank [(Two, Hearts), 
+            (Three, Hearts), 
+            (Four, Hearts), 
+            (Five, Hearts), 
+            (Six, Hearts)] `shouldBe` StraightFlush
