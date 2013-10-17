@@ -29,6 +29,14 @@ spec = do
             (Six, Hearts), 
             (Ten, Hearts)] `shouldBe` OnePair
 
+  describe "Full House" $ do
+    it "is a full house when there is a pair and a three of a kind" $ do
+      rank [(Two, Clubs), 
+            (Two, Hearts), 
+            (Two, Diamonds), 
+            (Ace, Spades), 
+            (Ace, Hearts)] `shouldBe` FullHouse
+
   describe "Four of a Kind" $ do
     it "is a four of a kind when four cards have the same face" $ do
       rank [(Two, Clubs), 
