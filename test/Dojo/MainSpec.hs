@@ -62,6 +62,12 @@ spec = do
             (Four, Diamonds), 
             (Five, Spades), 
             (Six, Hearts)] `shouldBe` Straight
+    it "is not a straight when it is not a sequence of faces" $ do
+      rank [(Two, Clubs), 
+            (Three, Hearts), 
+            (Four, Diamonds), 
+            (Five, Spades), 
+            (Seven, Hearts)] `shouldBe` HighCard
 
   describe "Four of a Kind" $ do
     it "is a four of a kind when four cards have the same face" $ do

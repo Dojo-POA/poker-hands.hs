@@ -42,7 +42,12 @@ rankFor _ [1, 2, 2] _ = TwoPairs
 rankFor _ [1, 1, 3] _ = ThreeOfAKind
 rankFor _ _ _ = HighCard
 
+sortedFaces = sort . map fst
+faceDistance faces = zipWith distance faces (tail faces)
+distance face1 face2 = (fromEnum face2) - (fromEnum face1)
+sequencial hand = all (== 1) $ faceDistance (sortedFaces hand)
+
 rank :: Hand -> Rank
-rank hand = rankFor (ranker snd hand) (ranker fst hand) True 
-  where ranker op = sort . map length . group . map op
- 
+rank hand = rankFor (ranker snd hand) (ranker fst hand) (sequencial hand)
+  where
+    ranker op = sort . map length . group . map op
