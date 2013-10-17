@@ -68,6 +68,12 @@ spec = do
             (Four, Diamonds), 
             (Five, Spades), 
             (Seven, Hearts)] `shouldBe` HighCard
+    it "is a straight when it starts with an Ace" $ do
+      rank [(Two, Clubs), 
+            (Three, Hearts), 
+            (Four, Diamonds), 
+            (Five, Spades), 
+            (Ace, Hearts)] `shouldBe` Straight
 
   describe "Four of a Kind" $ do
     it "is a four of a kind when four cards have the same face" $ do

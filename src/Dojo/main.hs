@@ -47,7 +47,9 @@ rankFor _ _ _ = HighCard
 sortedFaces = sort . map fst
 faceDistance faces = zipWith distance faces (tail faces)
 distance face1 face2 = (fromEnum face2) - (fromEnum face1)
-sequencial hand = all (== 1) $ faceDistance (sortedFaces hand)
+sequencialSorted [Two, Three, Four, Five, Ace] = True 
+sequencialSorted sorted = all (== 1) $ faceDistance sorted
+sequencial hand = sequencialSorted (sortedFaces hand)
 
 rank :: Hand -> Rank
 rank hand = rankFor (ranker snd hand) (ranker fst hand) (sequencial hand)
