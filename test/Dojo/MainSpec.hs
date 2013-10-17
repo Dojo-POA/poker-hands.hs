@@ -54,6 +54,15 @@ spec = do
             (Three, Spades), 
             (Ace, Hearts)] `shouldBe` ThreeOfAKind
 
+
+  describe "Straight" $ do
+    it "is a straight when there is a sequence of faces" $ do
+      rank [(Two, Clubs), 
+            (Three, Hearts), 
+            (Four, Diamonds), 
+            (Five, Spades), 
+            (Six, Hearts)] `shouldBe` Straight
+
   describe "Four of a Kind" $ do
     it "is a four of a kind when four cards have the same face" $ do
       rank [(Two, Clubs), 
