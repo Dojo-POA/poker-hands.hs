@@ -37,6 +37,7 @@ rankFor _ [2, 3] = FullHouse
 rankFor _ [1, 4] = FourOfAKind
 rankFor _ [1, 1, 1, 2] = OnePair
 rankFor _ [1, 2, 2] = TwoPairs
+rankFor _ [1, 1, 3] = ThreeOfAKind
 rankFor _ _ = HighCard
 
 rank :: Hand -> Rank
